@@ -239,6 +239,8 @@ function Cfn (name, template) {
                 .catch(function (err) {
                   if (!/No updates are to be performed/.test(err)) {
                     throw err
+                  } else {
+                    log('No updates are to be performed.');
                   }
                 })
     }
