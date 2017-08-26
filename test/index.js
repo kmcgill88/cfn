@@ -200,6 +200,62 @@ describe('create/update', function () {
                       return data
                     })
       })
+      it('updates stack from yaml template file with CloudFormation parameters AND tags', function () {
+        var cfn = require('../')
+        return cfn({
+          name: 'TEST-YAML-TEMPLATE',
+          template: path.join(__dirname, '/templates/test-template-5.yml'),
+          cfParams: {
+            TableName: 'TestTable'
+          },
+          tags: {
+            key: 'value'
+          }
+        })
+                    .then(function (data) {
+                      createStackStub.stub.should.not.be.called()
+                      updateStackStub.stub.should.be.calledOnce()
+                      updateStackStub.stub.should.be.calledWithMatch({
+                        Parameters: [
+                          {
+                            ParameterKey: 'TableName',
+                            ParameterValue: 'TestTable'
+                          }
+                        ],
+                        Tags: [
+                          {
+                            Key: 'key',
+                            Value: 'value'
+                          }
+                        ],
+                      })
+                      return data
+                    })
+      })
+      it('updates stack from yaml template file with CloudFormation parameters AND empty tags when none passed', function () {
+        var cfn = require('../')
+        return cfn({
+          name: 'TEST-YAML-TEMPLATE',
+          template: path.join(__dirname, '/templates/test-template-5.yml'),
+          cfParams: {
+            TableName: 'TestTable'
+          },
+        })
+                    .then(function (data) {
+                      createStackStub.stub.should.not.be.called()
+                      updateStackStub.stub.should.be.calledOnce()
+                      updateStackStub.stub.should.be.calledWithMatch({
+                        Parameters: [
+                          {
+                            ParameterKey: 'TableName',
+                            ParameterValue: 'TestTable'
+                          }
+                        ],
+                        Tags: [],
+                      })
+                      return data
+                    })
+      })
       it('updates stack from js module file with module and CloudFormation parameters', function () {
         var cfn = require('../')
         return cfn({
