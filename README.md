@@ -58,7 +58,11 @@ cfn({
   },
   awsConfig: {
     region: 'us-east-2',
+    accessKeyId: 'akid',
+    secretAccessKey: 'secret',
   },
+  capabilities: ['CAPABILITY_IAM'],
+  checkStackInterval: 5000,
 });
 
 ```

@@ -85,13 +85,13 @@ let _config = {
 function Cfn (name, template) {
   let log = console.log
   let opts = _.isPlainObject(name) ? name : {}
+  let awsOpts = {}
   let startedAt = Date.now()
   let params = opts.params
   let cfParams = opts.cfParams || {}
   let awsConfig = opts.awsConfig
   let capabilities = opts.capabilities || ['CAPABILITY_IAM']
   let tags = opts.tags || {}
-  let awsOpts = {}
   let async = opts.async
   let checkStackInterval = opts.checkStackInterval || _config.checkStackInterval
 
