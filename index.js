@@ -241,7 +241,7 @@ function Cfn (name, template) {
                   if (!/No updates are to be performed/.test(err)) {
                     throw err
                   } else {
-                    log('No updates are to be performed.');
+                    log('No updates are to be performed.')
                   }
                 })
     }
@@ -267,7 +267,7 @@ function Cfn (name, template) {
     })
   }
 
-  function convertTags() {
+  function convertTags () {
     if (!_.isPlainObject(tags)) return []
     return (Object.keys(tags)).map(function (key) {
       return {

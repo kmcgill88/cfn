@@ -227,7 +227,7 @@ describe('create/update', function () {
                             Key: 'key',
                             Value: 'value'
                           }
-                        ],
+                        ]
                       })
                       return data
                     })
@@ -239,7 +239,7 @@ describe('create/update', function () {
           template: path.join(__dirname, '/templates/test-template-5.yml'),
           cfParams: {
             TableName: 'TestTable'
-          },
+          }
         })
                     .then(function (data) {
                       createStackStub.stub.should.not.be.called()
@@ -251,7 +251,7 @@ describe('create/update', function () {
                             ParameterValue: 'TestTable'
                           }
                         ],
-                        Tags: [],
+                        Tags: []
                       })
                       return data
                     })
