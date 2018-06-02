@@ -100,7 +100,7 @@ describe('create/update', function () {
     var updateStackStub, createStackStub
     beforeEach(function () {
       AWS.restore()
-            // setup create/update stack stubs
+      // setup create/update stack stubs
       updateStackStub = AWS.mock('CloudFormation', 'updateStack', sinon.stub().callsArgWith(1, null, 'updated'))
       createStackStub = AWS.mock('CloudFormation', 'createStack', sinon.stub().callsArgWith(1, null, 'created'))
 
@@ -212,25 +212,25 @@ describe('create/update', function () {
             key: 'value'
           }
         })
-                    .then(function (data) {
-                      createStackStub.stub.should.not.be.called()
-                      updateStackStub.stub.should.be.calledOnce()
-                      updateStackStub.stub.should.be.calledWithMatch({
-                        Parameters: [
-                          {
-                            ParameterKey: 'TableName',
-                            ParameterValue: 'TestTable'
-                          }
-                        ],
-                        Tags: [
-                          {
-                            Key: 'key',
-                            Value: 'value'
-                          }
-                        ]
-                      })
-                      return data
-                    })
+        .then(function (data) {
+          createStackStub.stub.should.not.be.called()
+          updateStackStub.stub.should.be.calledOnce()
+          updateStackStub.stub.should.be.calledWithMatch({
+            Parameters: [
+              {
+                ParameterKey: 'TableName',
+                ParameterValue: 'TestTable'
+              }
+            ],
+            Tags: [
+              {
+                Key: 'key',
+                Value: 'value'
+              }
+            ]
+          })
+          return data
+        })
       })
       it('updates stack from yaml template file with CloudFormation parameters AND empty tags when none passed', function () {
         var cfn = require('../')
@@ -241,20 +241,20 @@ describe('create/update', function () {
             TableName: 'TestTable'
           }
         })
-                    .then(function (data) {
-                      createStackStub.stub.should.not.be.called()
-                      updateStackStub.stub.should.be.calledOnce()
-                      updateStackStub.stub.should.be.calledWithMatch({
-                        Parameters: [
-                          {
-                            ParameterKey: 'TableName',
-                            ParameterValue: 'TestTable'
-                          }
-                        ],
-                        Tags: []
-                      })
-                      return data
-                    })
+        .then(function (data) {
+          createStackStub.stub.should.not.be.called()
+          updateStackStub.stub.should.be.calledOnce()
+          updateStackStub.stub.should.be.calledWithMatch({
+            Parameters: [
+              {
+                ParameterKey: 'TableName',
+                ParameterValue: 'TestTable'
+              }
+            ],
+            Tags: []
+          })
+          return data
+        })
       })
       it('updates stack from js module file with module and CloudFormation parameters', function () {
         var cfn = require('../')
