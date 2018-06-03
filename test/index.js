@@ -268,20 +268,20 @@ describe('create/update', function () {
             testParam: 'FOR-JS-TEMPLATE'
           }
         })
-                    .then(function (data) {
-                      createStackStub.stub.should.not.be.called()
-                      updateStackStub.stub.should.be.calledOnce()
-                      updateStackStub.stub.should.be.calledWithMatch({
-                        Parameters: [
-                          {
-                            ParameterKey: 'readCap',
-                            ParameterValue: '1'
-                          }
-                        ]
-                      })
-                      updateStackStub.stub.firstCall.args[0].TemplateBody.should.match(/"TableName":"TEST-TABLE-6-FOR-JS-TEMPLATE"/)
-                      return data
-                    })
+        .then(function (data) {
+          createStackStub.stub.should.not.be.called()
+          updateStackStub.stub.should.be.calledOnce()
+          updateStackStub.stub.should.be.calledWithMatch({
+            Parameters: [
+              {
+                ParameterKey: 'readCap',
+                ParameterValue: '1'
+              }
+            ]
+          })
+          updateStackStub.stub.firstCall.args[0].TemplateBody.should.match(/"TableName":"TEST-TABLE-6-FOR-JS-TEMPLATE"/)
+          return data
+        })
       })
     })
     describe('if stack does not exist', function () {
@@ -293,11 +293,11 @@ describe('create/update', function () {
       it('creates json stack from file without parameters', function () {
         var cfn = require('../')
         return cfn('TEST-JSON-TEMPLATE', path.join(__dirname, '/templates/test-template-1.json'))
-                    .then(function (data) {
-                      createStackStub.stub.should.be.calledOnce()
-                      updateStackStub.stub.should.not.be.called()
-                      return data
-                    })
+                .then(function (data) {
+                  createStackStub.stub.should.be.calledOnce()
+                  updateStackStub.stub.should.not.be.called()
+                  return data
+                })
       })
       it('creates stack from yaml template string without parameters', function () {
         var cfn = require('../')
@@ -320,11 +320,11 @@ describe('create/update', function () {
                             "        WriteCapacityUnits: '1'\n" +
                             '      TableName: TEST-TABLE-6'
                 )
-                    .then(function (data) {
-                      createStackStub.stub.should.be.calledOnce()
-                      updateStackStub.stub.should.not.be.called()
-                      return data
-                    })
+                .then(function (data) {
+                  createStackStub.stub.should.be.calledOnce()
+                  updateStackStub.stub.should.not.be.called()
+                  return data
+                })
       })
       it('creates stack from json template file with CloudFormation parameters', function () {
         var cfn = require('../')
@@ -335,19 +335,19 @@ describe('create/update', function () {
             TableName: 'TestTable'
           }
         })
-                    .then(function (data) {
-                      createStackStub.stub.should.be.calledOnce()
-                      createStackStub.stub.should.be.calledWithMatch({
-                        Parameters: [
-                          {
-                            ParameterKey: 'TableName',
-                            ParameterValue: 'TestTable'
-                          }
-                        ]
-                      })
-                      updateStackStub.stub.should.not.be.called()
-                      return data
-                    })
+        .then(function (data) {
+          createStackStub.stub.should.be.calledOnce()
+          createStackStub.stub.should.be.calledWithMatch({
+            Parameters: [
+              {
+                ParameterKey: 'TableName',
+                ParameterValue: 'TestTable'
+              }
+            ]
+          })
+          updateStackStub.stub.should.not.be.called()
+          return data
+        })
       })
       it('creates stack from yaml template file with CloudFormation parameters', function () {
         var cfn = require('../')
@@ -358,19 +358,19 @@ describe('create/update', function () {
             TableName: 'TestTable'
           }
         })
-                    .then(function (data) {
-                      createStackStub.stub.should.be.calledOnce()
-                      createStackStub.stub.should.be.calledWithMatch({
-                        Parameters: [
-                          {
-                            ParameterKey: 'TableName',
-                            ParameterValue: 'TestTable'
-                          }
-                        ]
-                      })
-                      updateStackStub.stub.should.not.be.called()
-                      return data
-                    })
+        .then(function (data) {
+          createStackStub.stub.should.be.calledOnce()
+          createStackStub.stub.should.be.calledWithMatch({
+            Parameters: [
+              {
+                ParameterKey: 'TableName',
+                ParameterValue: 'TestTable'
+              }
+            ]
+          })
+          updateStackStub.stub.should.not.be.called()
+          return data
+        })
       })
       it('creates stack from yaml template file with CloudFormation parameters', function () {
         var cfn = require('../')
@@ -381,19 +381,19 @@ describe('create/update', function () {
             TableName: 'TestTable'
           }
         })
-                    .then(function (data) {
-                      createStackStub.stub.should.be.calledOnce()
-                      createStackStub.stub.should.be.calledWithMatch({
-                        Parameters: [
-                          {
-                            ParameterKey: 'TableName',
-                            ParameterValue: 'TestTable'
-                          }
-                        ]
-                      })
-                      updateStackStub.stub.should.not.be.called()
-                      return data
-                    })
+        .then(function (data) {
+          createStackStub.stub.should.be.calledOnce()
+          createStackStub.stub.should.be.calledWithMatch({
+            Parameters: [
+              {
+                ParameterKey: 'TableName',
+                ParameterValue: 'TestTable'
+              }
+            ]
+          })
+          updateStackStub.stub.should.not.be.called()
+          return data
+        })
       })
       it('creates stack from js module file with module and CloudFormation parameters', function () {
         var cfn = require('../')
@@ -407,20 +407,20 @@ describe('create/update', function () {
             testParam: 'FOR-JS-TEMPLATE'
           }
         })
-                    .then(function (data) {
-                      updateStackStub.stub.should.not.be.called()
-                      createStackStub.stub.should.be.calledOnce()
-                      createStackStub.stub.should.be.calledWithMatch({
-                        Parameters: [
-                          {
-                            ParameterKey: 'readCap',
-                            ParameterValue: '1'
-                          }
-                        ]
-                      })
-                      createStackStub.stub.firstCall.args[0].TemplateBody.should.match(/"TableName":"TEST-TABLE-6-FOR-JS-TEMPLATE"/)
-                      return data
-                    })
+        .then(function (data) {
+          updateStackStub.stub.should.not.be.called()
+          createStackStub.stub.should.be.calledOnce()
+          createStackStub.stub.should.be.calledWithMatch({
+            Parameters: [
+              {
+                ParameterKey: 'readCap',
+                ParameterValue: '1'
+              }
+            ]
+          })
+          createStackStub.stub.firstCall.args[0].TemplateBody.should.match(/"TableName":"TEST-TABLE-6-FOR-JS-TEMPLATE"/)
+          return data
+        })
       })
     })
   })
